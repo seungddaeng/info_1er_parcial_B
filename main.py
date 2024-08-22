@@ -32,7 +32,8 @@ class Paint(arcade.Window):
         if symbol == arcade.key.KEY_1:
             self.tool = PencilTool()
         elif symbol == arcade.key.KEY_2:
-            self.tool = MarkerTool(5)
+            # other tool
+            pass
         # Selección de color con teclas asd
         elif symbol == arcade.key.A:
             self.color = arcade.color.RED
