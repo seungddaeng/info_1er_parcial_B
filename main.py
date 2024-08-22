@@ -1,5 +1,5 @@
 import arcade
-from tool import PencilTool, MarkerTool
+from tool import PencilTool
 
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
