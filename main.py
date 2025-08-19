@@ -1,9 +1,9 @@
 import arcade
 from tool import PencilTool
 
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 600
-SCREEN_TITLE = "Paint"
+WIDTH = 800
+HEIGHT = 600
+TITLE = "Paint"
 
 COLORS = {
     "black": arcade.color.BLACK,
@@ -14,10 +14,10 @@ COLORS = {
 }
 
 
-class Paint(arcade.Window):
+class Paint(arcade.View):
     def __init__(self, load_path: str = None):
-        super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
-        arcade.set_background_color(arcade.color.WHITE)
+        super().__init__()
+        self.background_color = arcade.color.WHITE
         self.tool = PencilTool()
         self.used_tools = {self.tool.name: self.tool}
         self.color = arcade.color.BLUE
@@ -58,16 +58,18 @@ class Paint(arcade.Window):
             self.traces[-1]["trace"].append((x, y))
 
     def on_draw(self):
-        arcade.start_render()
+        self.clear()
         for tool in self.used_tools.values():
             tool.draw_traces(self.traces)
 
 
 if __name__ == "__main__":
     import sys
+    window = arcade.Window(WIDTH, HEIGHT, TITLE)
     # Invocación del programa en la forma: python main.py ruta/a/mi/archivo
     if len(sys.argv) > 1:
         app = Paint(sys.argv[1])
     else:
         app = Paint()
+    window.show_view(app)
     arcade.run()
